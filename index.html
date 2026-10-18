@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR CLIPS & EDITS STORE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Animasyonlu Arka Plan */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: #000;
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: moveUp 10s infinite linear;
+        }
+        .b1 { width: 300px; height: 300px; background: #00f2fe; bottom: -100px; left: 5%; animation-duration: 12s; }
+        .b2 { width: 300px; height: 300px; background: #00ff66; bottom: -100px; right: 5%; animation-duration: 9s; }
+
+        @keyframes moveUp {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-300px) scale(1.1); }
+            100% { transform: translateY(-600px) scale(1); }
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 90px;
+        }
+        header {
+            text-align: center;
+            padding: 25px 0 15px 0;
+        }
+        header h1 {
+            font-size: 26px;
+            background: linear-gradient(135deg, #00f2fe, #00ff66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .header-sub-en {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        .header-sub-tk {
+            font-size: 11px;
+            color: #888888;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .section-header {
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.3);
+            padding-bottom: 8px;
+            text-align: center;
+        }
+        .sec-title-en {
+            font-size: 16px;
+            font-weight: bold;
+            color: #00f2fe;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .sec-title-tk {
+            font-size: 11px;
+            color: #aaaaaa;
+            font-style: italic;
+        }
+
+        /* 3D Kutu Kart Tasarımı */
+        .card-3d-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 35px 0 45px 0;
+            perspective: 1000px;
+        }
+
+        .box-3d {
+            position: relative;
+            width: 210px;
+            height: 270px;
+            transform-style: preserve-3d;
+            transform: rotateY(-20deg) rotateX(10deg);
+            transition: transform 0.5s ease;
+        }
+
+        .box-3d:hover {
+            transform: rotateY(-5deg) rotateX(5deg) scale(1.05);
+        }
+
+        .box-face {
+            position: absolute;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+        }
+
+        .box-front {
+            width: 210px;
+            height: 270px;
+            transform: translateZ(25px);
+        }
+
+        .box-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .box-side {
+            width: 50px;
+            height: 270px;
+            right: -25px;
+            transform: rotateY(90deg);
+            background: #111;
+        }
+
+        .box-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .product-title-3d {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 18px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .product-info-sub {
+            font-size: 13px;
+            color: #00f2fe;
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        .price-tag-3d {
+            font-size: 16px;
+            color: #00ff66;
+            font-weight: bold;
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        /* Sipariş Butonu */
+        .cta-section {
+            text-align: center;
+            margin: 35px 0;
+        }
+        .order-btn {
+            background: linear-gradient(135deg, #00f2fe 0%, #00ff66 100%);
+            color: #000000;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0, 242, 254, 0.4);
+            transition: transform 0.2s ease;
+        }
+        .order-btn:hover {
+            transform: scale(1.03);
+        }
+        .btn-text-en {
+            font-size: 16px;
+            display: block;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        .btn-text-tk {
+            font-size: 11px;
+            display: block;
+            font-weight: normal;
+            opacity: 0.8;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation">
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>🏎️ CAR CLIPS STORE</h1>
+            <div class="header-sub-en">Exclusive 4K Car Clips & Edits</div>
+            <div class="header-sub-tk">Eksklyuziw 4K car klipler we montažlar</div>
+        </header>
+
+        <div class="section-header">
+            <div class="sec-title-en">🔥 AVAILABLE PACKS</div>
+            <div class="sec-title-tk">satylýan klip paketleri</div>
+        </div>
+
+        <!-- 1. ÜRÜN: BMW M5 G30 -->
+        <div class="card-3d-wrapper">
+            <div class="box-3d">
+                <div class="box-face box-front">
+                    <img src="bmw_m5_g30.jpg" alt="BMW M5 G30">
+                </div>
+                <div class="box-face box-side">
+                    <img src="bmw_m5_g30.jpg" alt="BMW M5 G30 Side">
+                </div>
+            </div>
+            <div class="product-title-3d">BMW M5 G30</div>
+            <div class="product-info-sub">📦 20 Clips Pack (20 bölek klip)</div>
+            <div class="price-tag-3d">10 TMT ($0.50 / €0.45)</div>
+        </div>
+
+        <!-- 2. ÜRÜN: MERCEDES AMG C -->
+        <div class="card-3d-wrapper">
+            <div class="box-3d">
+                <div class="box-face box-front">
+                    <img src="mercedes_amg_c.jpg" alt="MERCEDES AMG C">
+                </div>
+                <div class="box-face box-side">
+                    <img src="mercedes_amg_c.jpg" alt="MERCEDES AMG C Side">
+                </div>
+            </div>
+            <div class="product-title-3d" style="font-style: italic;">MERCEDES AMG C</div>
+            <div class="product-info-sub">📦 10 Clips Pack (10 bölek klip)</div>
+            <div class="price-tag-3d">10 TMT ($0.50 / €0.45)</div>
+        </div>
+
+        <div class="cta-section">
+            <a href="https://t.me/Apex1" class="order-btn" target="_blank">
+                <span class="btn-text-en">📲 ORDER NOW ON TELEGRAM</span>
+                <span class="btn-text-tk">sargyt etmek / telegram</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
